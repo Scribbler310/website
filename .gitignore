@@ -1,13 +1,3 @@
-node_modules
-dist
-*.log
-
-# Secrets and local settings
-.env
-.env.*
-!.env.example
-*.local
-
 # Editors and OS files
 .vscode/*
 !.vscode/extensions.json

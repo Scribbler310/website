@@ -23,13 +23,7 @@ All changes reach `main` through a pull request. You can't push to `main` direct
    git commit -m "Add contact page"
    ```
 
-4. Run the checks before you push:
-
-   ```sh
-   npm run lint
-   npm test
-   npm run build
-   ```
+4. Open `website.html` in your browser and check that your change works.
 
 5. Push your branch:
 
@@ -39,11 +33,9 @@ All changes reach `main` through a pull request. You can't push to `main` direct
 
 6. Open a pull request on GitHub and fill in the template.
 
-7. Merge once the automatic checks pass and a teammate has approved it. Then delete the branch.
+7. Merge once the automatic check passes. Then delete the branch.
 
 ## Tips
 
 - Keep pull requests small. They get reviewed faster and cause fewer conflicts.
 - If `main` has moved on while you worked, run `git pull origin main` on your branch and fix any conflicts.
-- Add a test in `server/test/` when you add an API route.
-- If you add a package, commit the updated `package-lock.json` too.
