@@ -24,6 +24,13 @@ Then open http://localhost:5173. You should see "Hello from the API", which mean
 
 During development, Vite forwards any request starting with `/api` to the server, so the frontend can call `fetch('/api/hello')` directly.
 
+## Adding a game
+
+1. Create a folder for it in `client/src/games/` with a component as its default export.
+2. Add an entry to the list in `client/src/games/index.js`.
+
+The navbar link, home page card, and `/games/<slug>` page all come from that list.
+
 ## Commands
 
 Run these from the project root.

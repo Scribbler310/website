@@ -1,23 +1,48 @@
-import { useEffect, useState } from 'react'
+import { Suspense } from 'react'
+import { Link, NavLink, Route, Routes } from 'react-router'
+import { games } from './games/index.js'
+import Home from './pages/Home.jsx'
+
+function NotFound() {
+  return (
+    <>
+      <title>Page not found</title>
+      <h1>Page not found</h1>
+      <p>
+        <Link to="/">Back to all games</Link>
+      </p>
+    </>
+  )
+}
 
 function App() {
-  const [message, setMessage] = useState('Loading...')
-
-  useEffect(() => {
-    fetch('/api/hello')
-      .then((res) => {
-        if (!res.ok) throw new Error(`Request failed: ${res.status}`)
-        return res.json()
-      })
-      .then((data) => setMessage(data.message))
-      .catch(() => setMessage('Could not reach the API. Is the server running?'))
-  }, [])
-
   return (
-    <main>
-      <h1>Website</h1>
-      <p>{message}</p>
-    </main>
+    <>
+      <nav className="navbar" aria-label="Main">
+        <Link to="/" className="navbar-brand">
+          Games
+        </Link>
+        <ul>
+          {games.map((game) => (
+            <li key={game.slug}>
+              <NavLink to={`/games/${game.slug}`}>{game.title}</NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <main>
+        <Suspense fallback={<p>Loading...</p>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            {games.map(({ slug, Component }) => (
+              <Route key={slug} path={`/games/${slug}`} element={<Component />} />
+            ))}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </main>
+    </>
   )
 }
 
